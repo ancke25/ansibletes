@@ -1,0 +1,13 @@
+---
+- name: instalation of web server
+  hosts: localhost
+  become: yes 
+  vars:
+    franck : pascal
+    demengue : pipo
+  tasks:
+    - name: instalation nginx
+      yum:
+       - name: nginx
+       state: present
+    
