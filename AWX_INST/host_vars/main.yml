@@ -1,6 +1,7 @@
 ---
 - name: instalation of web server
   hosts: localhost
+  gather_facts: false
   become: yes 
   vars:
     franck : pascal
@@ -10,6 +11,16 @@
       yum:
         name: nginx
         state: present
+    - name: git checkout the website
+      git:
+        dest: /usr/share/nginx/html/
+        repo: https://github.com/linuxacademy/content-introduction-to-ansible.git
     - name:
       service:
-      statte: started
+        name: nginx
+        state: started
+    - name: Open the firewall ports
+      firewalld:
+         service: http
+         permanent: yes
+         state: enabled
