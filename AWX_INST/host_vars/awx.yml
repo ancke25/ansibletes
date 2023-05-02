@@ -1,0 +1,97 @@
+---
+- name: Install AWX
+  hosts: localhost
+  become: true
+  vars:
+    docker_compose_version: "1.29.2"
+    awx_version: "17.1.0"
+  tasks:
+    - name: Install required packages
+      package:
+        name:
+          - git
+          - gcc
+          - gcc-c++
+          - nodejs
+          - npm
+          - gettext
+          - python3-pip
+          - python3-wheel
+          - libffi-devel
+          - openssl-devel
+          - git
+        state: present
+
+    - name: Ajouter la clé du référentiel RPM
+      rpm_key:
+        key: https://download.docker.com/linux/centos/gpg
+        state: present
+
+    - name: Installer le référentiel Docker CE
+      yum_repository:
+        name: docker-ce
+        description: Docker CE Repository
+        baseurl: https://download.docker.com/linux/centos/{{ansible_distribution_major_version}}/$basearch/stable
+        enabled: true
+        gpgcheck: true
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        state: present
+
+    - name: Installer Docker
+      yum:
+        name: 
+          - docker-ce 
+          - docker-ce-cli 
+          - containerd.io
+        state: present
+
+    - name: Démarrer et activer Docker
+      systemd:
+        name: docker
+        enabled: true
+        state: started
+
+#    - name: Installer Docker Compose
+#      pip:
+#        name: docker-compose
+#        version: 1.28.5
+#        state: present
+
+
+    - name: Installer Docker Compose
+      become: true
+      get_url:
+        url:  'curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)' # -o /usr/local/bin/docker-compose
+        dest:  /usr/local/bin/docker-compose
+        owner: root
+        group: root
+        mode: 0644
+        force_basic_auth: yes
+
+
+    - name: Clone AWX repository
+      git:
+        repo: https://github.com/ansible/awx.git
+        dest: /opt/awx
+        version: "{{ awx_version }}"
+      register: awx_repo
+
+    - name: Install Docker Compose
+      pip:
+        name: docker-compose
+        version: "{{ docker_compose_version }}"
+        state: present
+
+    - name: Build and start containers
+      command: docker-compose up --build -d
+      args:
+        chdir: /opt/awx/installer
+
+    - name: Wait for containers to start
+      wait_for:
+        host: localhost
+        port: 80
+        delay: 5
+
+    - name: Create admin user
+      command: docker-compose exec -T awx_task /bin/bash -c "source /venv/awx/bin/activate && awx-manage createsuperuser"
