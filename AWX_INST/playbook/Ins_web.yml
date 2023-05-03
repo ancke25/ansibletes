@@ -1,0 +1,20 @@
+---
+- hosts: client
+  become: yes
+  tasks:
+    - name: installation of nginx
+      yum:
+       name:
+        - nginx
+        - php
+       state: present
+    - name: start service and activit
+      service:
+        name: nginx
+        state: started
+        enabled: yes    
+    - name: copy file to server
+      copy:
+       src: ../store/
+       dest: /usr/share/nginx/html/
+      
