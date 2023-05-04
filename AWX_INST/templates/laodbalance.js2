@@ -1,13 +1,14 @@
 # Define which servers to include in the load balancing scheme. 
 # It's best to use the servers' private IPs for better performance and security.
 # You can find the private IPs at your UpCloud control panel Network section.
-# {% for hosts in groups['client'] %}
+#    {% for host in hostvars | difference(['client']) %}
 http {
-        {% for host in hostvars | difference(['client']) %}
+        {% for hosts in groups['client'] %}
    upstream backend {
-      http://{{hostvars[hosts]['ansible_host']}}; 
+      http://{{ hostvars[hosts]['ansible_host'] }} 
       
    {% endfor %}
+
    }
 
    # This server accepts all traffic to port 80 and passes it to the upstream. 
