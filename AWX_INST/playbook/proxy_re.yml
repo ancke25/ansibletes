@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name:
+      template:
+       src: /opt/
+       dest: /var
+       mode: 654

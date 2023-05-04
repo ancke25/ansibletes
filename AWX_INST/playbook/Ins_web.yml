@@ -12,13 +12,19 @@
     - name: activation of php7 repository
       shell:
            |
-            yum-config-manager --enable remi-php73
-            yum list all 
-            yum install php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysqlnd
+            yum-config-manager --enable remi-php73    
     - name: installation of nginx
       yum:
        name:
         - nginx
+        - php 
+        - php-common 
+        - php-opcache 
+        - php-mcrypt 
+        - php-cli
+        - php-gd
+        - php-curl
+        - php-mysqlnd
        state: present
     - name: start service and activit
       service:
@@ -29,4 +35,11 @@
       copy:
        src: ../store/
        dest: /usr/share/nginx/html/
+
+    - name: change values 
+      lineinfile:
+       path: /etc/php.ini
+       regexp: ^display_errors = Off
+       line:  'display_errors = On'
+
       
