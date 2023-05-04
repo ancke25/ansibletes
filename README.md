@@ -129,4 +129,4 @@ Vagrant up
 
 Conclusion :
 
-La configuration de Vagrant décrite dans ce document vous permettra de déployer deux machines virtuelles avec des adresses IP spécifiques. Vous pourrez vous connecter à ces machines en utilisant les commandes SSH fournies. N'hésitez pas contacter support@momentun.ca si vous avez des questions supplémentaires ou des problèmes lors de la configuration de l'environnement de développement.
+La configuration de Vagrant décrite dans ce document vous permettra de déployer deux machines virtuelles avec des adresses IP spécifiques. Vous pourrez vous connecter à ces machines en utilisant les commandes SSH fournies. N'hésitez pas contacter support-tech@momentum-tech.ca si vous avez des questions supplémentaires ou des problèmes lors de la configuration de l'environnement de développement.
