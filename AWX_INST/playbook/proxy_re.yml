@@ -12,3 +12,11 @@
        src: ../templates/laodbalance.js2
        dest: /etc/nginx/conf.d/ldng.conf
        mode: 654
+      notify: restart nginx
+    
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restart
+         
