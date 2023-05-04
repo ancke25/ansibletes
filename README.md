@@ -10,7 +10,7 @@ Le fichier Vagrantfile contient la configuration de notre environnement de déve
      ###################################################################################
 
                  # ############################### #####################################
-                 #    this is script vagrant to run tree VM centos                      #
+                 #    This is a vagrant script to run a centos VM                      #
                  #    with one master and two node the default range IP is 192.168.56.  #
                  #     you can change this  range  if you want                           #
                  ########################################################################
