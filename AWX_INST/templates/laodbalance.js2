@@ -2,27 +2,24 @@
 # It's best to use the servers' private IPs for better performance and security.
 # You can find the private IPs at your UpCloud control panel Network section.
 #    {% for host in hostvars | difference(['client']) %}
-event { 
-   Worker_connection 1024;
 
+events {
+    worker_connections 1024;
 }
+
 http {
-        upstream backend {
+    upstream backend {
         {% for host in groups['client'] %}
-        server {{host}}:80;
-   {% endfor %}
+        server {{ host }}:80;
+        {% endfor %}
+    }
 
-   }
-
-   # This server accepts all traffic to port 80 and passes it to the upstream. 
-   # Notice that the upstream name and the proxy_pass need to match.
-
-   server {
-      listen 80; 
-
-      location / {
-          proxy_pass http://backend;
-          
-      }
-   }
+    server {
+        listen 80;
+        location / {
+            proxy_pass http://backend;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
 }
