@@ -2,11 +2,14 @@
 # It's best to use the servers' private IPs for better performance and security.
 # You can find the private IPs at your UpCloud control panel Network section.
 #    {% for host in hostvars | difference(['client']) %}
+event { 
+   Worker_connection 1024;
+
+}
 http {
-        {% for hosts in groups['client'] %}
-   upstream backend {
-      http://{{ hostvars[hosts]['ansible_host'] }} 
-      
+        upstream backend {
+        {% for host in groups['client'] %}
+        server {{host}}:80;
    {% endfor %}
 
    }
