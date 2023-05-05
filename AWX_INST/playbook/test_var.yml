@@ -23,3 +23,9 @@
         dest: "{{desrt}}/info.html"
         content: "hello this is <h1>hello, Wolrld!</h1>"
         force: yes
+    - name: liste content of directory
+      command: ls -ls "{{ desrt }}"
+      register: all_file
+    - name: collect and print content
+      debug:
+       msg: "{{all_file}}"
