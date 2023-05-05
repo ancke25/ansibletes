@@ -41,5 +41,6 @@
        path: /etc/php.ini
        regexp: ^display_errors = Off
        line:  'display_errors = On'
+       backrefs: yes
 
       
