@@ -1,3 +1,0 @@
-# all run playbook 
-- import_playbook : ins_web.yml
-- import_playbook : proxy_re.yml

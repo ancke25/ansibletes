@@ -1,0 +1,6 @@
+---
+# handlers file for Roles/nginx_load_ba
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restart

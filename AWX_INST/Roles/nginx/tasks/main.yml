@@ -1,0 +1,22 @@
+---
+# tasks file for Roles/nginx and copy file to site
+- name: installation of nginx
+  yum:
+    name: nginx
+    state: present   
+- name: start service and activit
+  service:
+    name: nginx
+    state: started
+    enabled: yes    
+- name: copy file to server
+  copy:
+    src: ../files/store/
+    dest: /usr/share/nginx/html/
+
+- name: change values 
+  lineinfile:
+    path: /etc/php.ini
+    regexp: ^display_errors = Off
+    line:  'display_errors = On'
+    backrefs: yes

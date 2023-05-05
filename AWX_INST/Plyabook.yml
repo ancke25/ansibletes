@@ -1,0 +1,14 @@
+#### installation of nginx php7 and nginx_loadbalance
+- name: installation of php7 on redhat7
+  hosts: client
+  become: yes
+  roles: php7
+
+- name: installation of nginx
+  hosts: client
+  roles: nginx
+
+
+- name: setting laod balance on nginx
+  hosts: client
+  roles: nginx_load_ba
