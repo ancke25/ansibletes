@@ -1,21 +1,21 @@
 ---
-  - name: initialisation de du repertoire 
+  - name: inilisation of repository mariadb 
     ansible.builtin.get_url:
       url: https://r.mariadb.com/downloads/mariadb_repo_setup
       dest: /tmp/mariadb_repo_setup
       force_basic_auth: yes
                          
-  - name: Run rustup
+  - name: active repository
     command:  bash /tmp/mariadb_repo_setup  --mariadb-server-version=10.6 
 
-  - name: activate mariadb repository  
+  - name: update new file repository 
     command: yum -y update 
      
   - name: "update package for mariade" 
     yum: 
       update_cache: true
 
-  - name: "install mysql" 
+  - name: "install mmariadb" 
     yum:
       name:
       - mariadb-server
@@ -27,11 +27,11 @@
   - name: temple file yum 
     template:
       src: yum_report.j2 
-      dest: /var/www/mariadrb.repo 
+      dest: /etc/yum.repos.d/mariadrb.repo 
       owner: root
       group: root
       mode: '0600'
-    when:  stat_result.stat.exists 
+   
       
   - name: configure mariadb
     service:

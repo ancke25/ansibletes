@@ -1,7 +1,6 @@
 # Define which servers to include in the load balancing scheme. 
 # It's best to use the servers' private IPs for better performance and security.
 # You can find the private IPs at your UpCloud control panel Network section.
-#    {% for host in hostvars | difference(['client']) %}
 
 upstream appset {
  server 192.168.56.10;
