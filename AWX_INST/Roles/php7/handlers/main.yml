@@ -3,8 +3,4 @@
   service:
     name: nginx
     state: restart
-    
-- name: add modification in hosts file
-  service:
-    name: nginx
-    state: restart
+
