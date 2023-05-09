@@ -1,0 +1,4 @@
+dest1: http://yum.mariadb.org/10.4/rhel8-amd64
+dest2: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+path: /etc/yum.repo/
+path1: /mysql/files

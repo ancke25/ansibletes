@@ -1,0 +1,58 @@
+---
+  - name: initialisation de du repertoire 
+    ansible.builtin.get_url:
+      url: https://r.mariadb.com/downloads/mariadb_repo_setup
+      dest: /tmp/mariadb_repo_setup
+      force_basic_auth: yes
+                         
+  - name: Run rustup
+    command:  bash /tmp/mariadb_repo_setup  --mariadb-server-version=10.6 
+
+  - name: activate mariadb repository  
+    command: yum -y update 
+     
+  - name: "update package for mariade" 
+    yum: 
+      update_cache: true
+
+  - name: "install mysql" 
+    yum:
+      name:
+      - mariadb-server
+      - MySQL-python
+      - MariaDB-client 
+      - MariaDB-backup
+      state: latest # absent
+
+  - name: temple file yum 
+    template:
+      src: yum_report.j2 
+      dest: /var/www/mariadrb.repo 
+      owner: root
+      group: root
+      mode: '0600'
+    when:  stat_result.stat.exists 
+      
+  - name: configure mariadb
+    service:
+     name: mariadb
+     enabled: true
+     state: started
+
+  - name: mysql_root_password
+    mysql_user:
+     login_user: root
+     login_password: "{{ mysql_root_password }}"
+     user: root
+     check_implicit_admin: true
+     password: "{{ mysql_root_password }}"
+     host: "{{ ansible_fqdn }}"
+
+  - name: remove remote root
+    mysql_user:
+     check_implicit_admin: true
+     login_user: root
+     login_password: "{{ mysql_root_password }}"
+     user: root
+     host: "{{ ansible_fqdn }}"
+     state: absent
