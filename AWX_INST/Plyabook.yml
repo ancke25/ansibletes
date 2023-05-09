@@ -1,14 +1,15 @@
 #### installation of nginx php7 and nginx_loadbalance
-- name: installation of php7 on redhat7
+- name: create  ssh_keyg on localhost
+  connection: local
+  hosts: localhost
+  roles: 
+  - ssh_key
+
+- name: create user to connect on remode server with ssh_keyg
   hosts: client
   become: yes
-  roles: php7
-
-- name: installation of nginx
-  hosts: client
-  roles: nginx
-
-
-- name: setting laod balance on nginx
-  hosts: client
-  roles: nginx_load_ba
+  roles:
+  - user
+  - php7
+  - nginx
+  - nginx_load_ba

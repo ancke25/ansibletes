@@ -1,2 +1,12 @@
 ---
-# handlers file for Roles/nginx
+- name: add modification in hosts file
+  service:
+    name: nginx
+    state: reload 
+
+ 
+- name: restart service after upload new vhost
+  service:
+    name: nginx
+    state: reload
+    

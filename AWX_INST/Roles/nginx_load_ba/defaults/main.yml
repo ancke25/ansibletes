@@ -1,2 +1,3 @@
 ---
 # defaults file for Roles/nginx_load_ba
+port_nginx: 80

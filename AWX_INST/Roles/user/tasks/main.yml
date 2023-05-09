@@ -1,0 +1,18 @@
+---
+- name: create user dichride
+  user: 
+    name: dichride
+    shell: /bin/bash
+    groups: wheel
+    append: yes
+    password: "{{ 'dichride123'| password_hash('sha512')}}"
+ 
+- name: add dichride user to sudoers
+  copy:
+    dest: "/etc/sudoers.d/dichride" 
+    content: " dichride ALL=(ALL) NOPASSWD: ALL"
+ 
+- name: deploy ssh key 
+  authorized_key:
+    user: dichride
+    key: "{{ lookup('file', '/tmp/dichride.pub')}}"

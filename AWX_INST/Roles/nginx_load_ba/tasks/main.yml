@@ -2,13 +2,16 @@
 # tasks file for Roles/nginx_load_ba
   - name: permit traffic in default zone for https service
     firewalld:
-      service: https
+      service: http
       permanent: true
       state: enabled
-  - name:
+  - name: copy file to loadbance directory
     template:
-      src: ../templates/laodbalance.js2
-      dest: /etc/nginx/conf.d/ldng.conf
+      src: laodbalance.js2
+      dest: /etc/nginx/conf.d/lban.conf
       mode: 654
+    register: upload_file
     notify: restart nginx
-      
+  - name: print message test
+    debug: 
+     msg:  "{{upload_file}}"

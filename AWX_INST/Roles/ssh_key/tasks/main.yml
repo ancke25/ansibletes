@@ -1,0 +1,8 @@
+---
+- name: ssh_keygen
+  openssh_keypair:
+    path: /tmp/dichride
+    type: rsa
+    size: 4096
+    state: present
+    force: no

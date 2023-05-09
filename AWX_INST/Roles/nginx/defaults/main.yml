@@ -1,2 +1,2 @@
 ---
-# defaults file for Roles/nginx
+port_nginx: 80

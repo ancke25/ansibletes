@@ -3,23 +3,40 @@
 # You can find the private IPs at your UpCloud control panel Network section.
 #    {% for host in hostvars | difference(['client']) %}
 
-events {
+worker_processes 1;
+
+events{ 
     worker_connections 1024;
 }
-
-http {
+   http {
     upstream backend {
-        {% for host in groups['client'] %}
-        server {{ host }}:80;
+        {% for hosts in groups['client'] %}
+        BalancerMember http://{{ hostsvars[hosts]['ansible_host']}}
         {% endfor %}
     }
 
     server {
-        listen 80;
+        listen '{{port_nginx}}';
         location / {
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }
     }
+   }
+
+#######################
+
+upstream appset {
+ server 192.168.56.10;
+ server 192.168.56.11;
+}
+
+  server {
+        listen 8888;
+        location / {
+            proxy_pass http://backend;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+ }
 }
