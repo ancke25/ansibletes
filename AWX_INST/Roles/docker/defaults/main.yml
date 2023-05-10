@@ -1,0 +1,4 @@
+---
+# defaults file for Roles/docker
+docker_compose_version: "1.29.2"
+awx_version: "17.1.0"

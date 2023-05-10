@@ -11,7 +11,14 @@
   roles:
   - user
   - php7
-  - nginx
-  - mysql
-  # - nginx_load_ba
+# - nginx
+#  - mysql
+ #  - nginx_load_ba
  
+- name: create kubenete on remode server with node
+  hosts: ser_all
+  become: yes
+  roles:
+  - docker
+  - Kubernet
+  - user

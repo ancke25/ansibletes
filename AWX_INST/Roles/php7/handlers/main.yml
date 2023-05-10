@@ -2,5 +2,5 @@
 - name: modify php.ini file
   service:
     name: nginx
-    state: restart
+    state: reloaded
 

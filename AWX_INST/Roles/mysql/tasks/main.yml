@@ -9,7 +9,8 @@
     command:  bash /tmp/mariadb_repo_setup  --mariadb-server-version=10.6 
 
   - name: update new file repository 
-    command: yum -y update 
+    command: 
+      cmd: yum  list all 
      
   - name: "update package for mariade" 
     yum: 
