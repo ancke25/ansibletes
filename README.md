@@ -141,11 +141,20 @@ Ouvrez un terminal et accédez au répertoire contenant le fichier "Vagrantfile"
 Exécutez la commande suivante pour démarrer les machines virtuelles :
 
  Vagrant up 
+<<<<<<< HEAD
 # NB
 Après l'installation vous pouvais vous connecter a une des machines en utilisant la commande 
 ssh root@ip_machine1, ssh vagrant@ip_machine1 mot de passe 'vagrant'
 soit en utilisant la connexion directe à une des machines comme illustrer suivant. 
 vagrant ssh node1 ceci est possible si vous restez dans le répertoire où se trouve le fichier vagranfile
+=======
+
+# NB
+Après l'installation vous pouvais vous connecter a une des machines en utilisant la commande 
+  ssh root@ip_machine1, ssh vagrant@ip_machine1 mot de passe 'vagrant'  
+soit en utilisant la connexion directe à une des machines comme illustrer suivant.
+  vagrant ssh node1    ceci est possible si vous restez dans le répertoire où se trouve le fichier vagranfile  
+>>>>>>> e25ab0655e5e9493ca2547be0c7b98d34f824a42
 
 # Conclusion :
 
