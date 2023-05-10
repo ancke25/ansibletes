@@ -149,13 +149,6 @@ soit en utilisant la connexion directe à une des machines comme illustrer suiva
 vagrant ssh node1 ceci est possible si vous restez dans le répertoire où se trouve le fichier vagranfile
 =======
 
-# NB
-Après l'installation vous pouvais vous connecter a une des machines en utilisant la commande 
-  ssh root@ip_machine1, ssh vagrant@ip_machine1 mot de passe 'vagrant'  
-soit en utilisant la connexion directe à une des machines comme illustrer suivant.
-  vagrant ssh node1    ceci est possible si vous restez dans le répertoire où se trouve le fichier vagranfile  
->>>>>>> e25ab0655e5e9493ca2547be0c7b98d34f824a42
-
 # Conclusion :
 
 La configuration de Vagrant décrite dans ce document vous permettra de déployer deux machines virtuelles avec des adresses IP spécifiques. Vous pourrez vous connecter à ces machines en utilisant les commandes SSH fournies. N'hésitez pas contacter support-tech@momentum-tech.ca si vous avez des questions supplémentaires ou des problèmes lors de la configuration de l'environnement de développement.
