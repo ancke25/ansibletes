@@ -5,10 +5,11 @@
 ip_master = "192.168.56.2"
 ip_machine1 = "192.168.56.10"
 ip_machine2 = "192.168.56.11"
-
+disks = "C:\dd"
 Vagrant.configure("2") do |config|
 
      config.vm.define "node1" do |node1|
+      node1.vm.disk :disk, size: "50GB", name: "extra_storage"
       node1.vm.provision "shell", run: "always", inline: <<-SHELL
       yum list all
       yum update
@@ -24,6 +25,7 @@ Vagrant.configure("2") do |config|
                vb.memory = "4048"
                vb.cpus = "2"
                vb.name = "client"
+       
        end
      end
    

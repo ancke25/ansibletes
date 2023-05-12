@@ -1,1 +1,1 @@
-{"dependencies":[["vagrant-disksize",["= 0.1.3"]]],"checksum":"99e15f91d9bdc24ad8d7ae4c040866d295013fa4c9999eaceefe31291f150184","vagrant_version":"2.3.4"}
+{"dependencies":[["vagrant-disksize",["= 0.1.3"]],["vagrant-reload",["= 0.0.1"]],["racc",["~> 1.4"]],["nokogiri",["~> 1.6"]],["iniparse",["> 1.0"]],["log4r",["~> 1.1"]],["concurrent-ruby",["~> 1.0"]],["i18n",["~> 1.8"]],["vagrant-vmware-esxi",["= 2.5.5"]],["vagrant-winrm-syncedfolders",["= 1.0.1"]]],"checksum":"98a221d97afc1521375315f319b77acf579b9967b8988ec839f3d827479b5206","vagrant_version":"2.3.4"}

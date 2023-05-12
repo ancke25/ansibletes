@@ -7,7 +7,7 @@ kubernetes_packages:
   - name: kubeadm
     state: present
   - name: kubernetes-cni
-    state: present
+    state: 
 
 kubernetes_version: '1.25'
 kubernetes_version_rhel_package: '1.25.1'
@@ -23,7 +23,7 @@ kubernetes_allow_pods_on_control_plane: true
 kubernetes_pod_network:
   # Flannel CNI.
   cni: 'flannel'
-  cidr: '10.244.0.0/16'
+  cidr: '10.0.2.0/16'
   # Calico CNI.
   # cni: 'calico'
   # cidr: '192.168.0.0/16'
@@ -50,11 +50,6 @@ kubernetes_config_kube_proxy_configuration: {}
 kubernetes_apiserver_advertise_address: ''
 kubernetes_version_kubeadm: 'stable-{{ kubernetes_version }}'
 kubernetes_ignore_preflight_errors: 'all'
-
-kubernetes_apt_release_channel: main
-# Note that xenial repo is used for all Debian derivatives at this time.
-kubernetes_apt_repository: "deb http://apt.kubernetes.io/ kubernetes-xenial {{ kubernetes_apt_release_channel }}"
-kubernetes_apt_ignore_key_error: false
 
 kubernetes_yum_arch: '$basearch'
 kubernetes_yum_base_url: "https://packages.cloud.google.com/yum/repos/kubernetes-el7-{{ kubernetes_yum_arch }}"

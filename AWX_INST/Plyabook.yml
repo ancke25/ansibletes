@@ -5,20 +5,34 @@
   roles: 
   - ssh_key
 
+- name: Include a play after another play
+  ansible.builtin.import_playbook: playbook/Ins_web.yml
+
 - name: create user to connect on remode server with ssh_keyg
   hosts: client
+  # vars_prompt:
+
+  # - name: username
+  #   prompt: What is your username?
+  #   private: false
+
+  # - name: password
+  #   prompt: What is your password?
   become: yes
   roles:
   - user
-  - php7
+#  - php7
+#  - collectiphosts
 # - nginx
 #  - mysql
  #  - nginx_load_ba
  
+
+     
 - name: create kubenete on remode server with node
   hosts: ser_all
   become: yes
   roles:
   - docker
-  - Kubernet
+  - kubenet
   - user
