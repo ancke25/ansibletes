@@ -1,12 +1,23 @@
-Role Name
+Creation of user 
 =========
 
+- name: ssh_keygen
+  openssh_keypair:
+    path: /tmp/dichride
+    type: rsa
+    size: 4096
+    state: present
+    force: no
+
+
+
 A brief description of the role goes here.
+this role help to generat ssh certifiaction locale  and store to directory /tmp/dichride 
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+before setting generation key you shoul have the package ssh.
 
 Role Variables
 --------------
